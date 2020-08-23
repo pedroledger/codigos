@@ -1,7 +1,4 @@
 from turtle import * # IMPORTA A BIBLIOTECA TURTLE
-from freegames import vector
-
-pacman = vector(20,10)
 
 
 def ler_matriz():
@@ -63,14 +60,8 @@ def em_coord_turtle(xm, ym):
     xt = (meio - xm) * 20
     return yt, xt
 
-def jogar():
-    up()
-    goto(pacman.x + 10, pacman.y + 10)
-    dot(20, 'yellow')
-
 def main():
     criar_labirinto()
-    jogar()
     done()
 
 main()
