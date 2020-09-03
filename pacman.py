@@ -1,7 +1,12 @@
-from agente import *
-from labirinto import *
+from agente import Agente
+from labirinto import Labirinto
+from turtle import *
+from time import sleep
 
 def main():
+    tracer(False)
+    hideturtle()
+    bgcolor('black')
 
     dimensao_da_matriz = 20
     tam_celula = 20
@@ -12,15 +17,17 @@ def main():
 
     # Cria o agente
     tam_agente = 20
-    agente = Agente(tam_agente, tam_celula)
+    agente = Agente(0, tam_agente, "yellow")
+    agente.add_labirinto(lab)
+    agente.desenhar_se()
 
-    # Obtém as coordenadas de onde inserir o agente e desenha na tela
-    lin, col = lab.cel_aleatoria()
-    x, y = lab.em_coord_turtle(lin, col)
-    agente.desenhar_agente(x, y, 'yellow')
-
-    # Atualiza o turtle e finaliza
-    update()
+    terminou_percurso = False
+    intervalo_entre_frames = 0.1
+    while (not terminou_percurso):
+        terminou_percurso = agente.percorrer()
+        # Atualiza o turtle e finaliza
+        update()
+        sleep(intervalo_entre_frames)
     done()
 
 main()
