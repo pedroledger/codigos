@@ -98,13 +98,14 @@ class Agente:
         # REQ
         # Deve obter o passo (sem efetivamente dar o passo)
         passo = self.prox_passo()
+        pos_atual = self._posicao
         prox_pos_agente = None
 
-        # Caso a posição não esteja ocupada e nem seja caminho:
+        # Caso a posição não esteja ocupada e seja caminho:
         if self.passo_eh_caminho(passo, lab) == True and self.passo_esta_ocupado(passo, lab) == False:
             prox_pos_agente = passo # Muda o agente para a posição do novo passo
-            self.dar_passo(prox_pos_agente)
-        else:# Caso contrário
+            self.desenhar_se(prox_pos_agente)
+        else: # Caso contrário
             self.mudar_direcao_aleatoriamente()# Escolhe a nova direção aleatoriamente
 
     def passo_eh_caminho(self, passo, lab):   
@@ -113,13 +114,13 @@ class Agente:
         # Se der o passo, continua sendo caminho (lab.eh_caminho())
         return lab.eh_caminho(passo[0], passo[1])    
         
-    def passo_esta_ocupado(self, lab, passo):    
+    def passo_esta_ocupado(self, passo, lab):    
         # REQ
         # Deve verificar:
         # Se der o passo, a posição estará ocupada? (lab.eh_celula_ocupada(self, celula, agente_id))
-        lab = self._labirinto
-        lab.eh_celula_ocupada(passo, )
-        return 
+        # Se der o passo, a posição estará ocupada? (lab.eh_celula_ocupada(self, passo, self._id))
+        
+        return lab.eh_celula_ocupada(passo, self._id)
   
     def dar_passo(self, prox_pos_agente):
         # REQ
@@ -127,7 +128,7 @@ class Agente:
         self._posicao = prox_pos_agente
         # Desenhar a posição na tela
         self.desenhar_se()
-        return
+        #return
 
     def prox_passo(self):
         """ Obtém o próximo passo do agente na direção em que se encontra """

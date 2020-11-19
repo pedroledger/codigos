@@ -6,20 +6,7 @@ from labirinto import Labirinto
 from turtle import *
 from time import sleep
 
-def main():
-    # Simulação 1
-    um_agente_percorre_tudo()
 
-    # Simulação 2
-    #um_agente_vagueia()
-
-    # Simulação 3
-    #todos_vagueiam()
-
-    # Simulação 4
-    #agente_com_um_destino()
-
-    done()
 
 """ Simulações """
 
@@ -102,5 +89,20 @@ def agente_com_um_destino():
         # Atualiza "frame"
         update()
         sleep(intervalo_entre_frames)
+
+def main():
+    # Simulação 1
+    #um_agente_percorre_tudo()
+
+    # Simulação 2
+    um_agente_vagueia()
+
+    # Simulação 3
+    #todos_vagueiam()
+
+    # Simulação 4
+    #agente_com_um_destino()
+
+    done()
 
 main()

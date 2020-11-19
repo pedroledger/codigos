@@ -112,4 +112,5 @@ def main():
     # Deve resultar em True uma vez que apontam para a mesma célula
     print( cel1 == cel2 )
 
-main()
+#main()
+
