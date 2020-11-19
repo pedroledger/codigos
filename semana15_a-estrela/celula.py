@@ -85,7 +85,7 @@ class Celula:
         """ Compara este (self) objeto com outro (other) considerando somente
             as coordenadas da matriz
         """
-        return self._coord_matr == other._coord_matr
+        return self._coord_matr == other._coord_matr 
 
 def main():
     """ Faz um teste das conversões """
@@ -112,4 +112,4 @@ def main():
     # Deve resultar em True uma vez que apontam para a mesma célula
     print( cel1 == cel2 )
 
-#main()
+main()

@@ -159,7 +159,9 @@ class Labirinto:
         # REQ
         # Deve verificar no dicionário de agentes se a célula do parâmetro está
         # sendo ocupada por algum agente
-        if self.agentes
+        for agente in self.agentes:
+            if agente != agente_id and agente._posicao == celula:
+                return True
         return False
 
     def dist_manhattan(self, origem, destino):

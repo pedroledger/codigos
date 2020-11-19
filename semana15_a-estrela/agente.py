@@ -102,9 +102,10 @@ class Agente:
 
         # Caso a posição não esteja ocupada e nem seja caminho:
         if self.passo_eh_caminho(passo, lab) == True and self.passo_esta_ocupado(passo, lab) == False:
-            prox_pos_agente = self.prox_passo()# Muda o agente para a posição do novo passo
+            prox_pos_agente = passo # Muda o agente para a posição do novo passo
+            self.dar_passo(prox_pos_agente)
         else:# Caso contrário
-            prox_pos_agente = self.mudar_direcao_aleatoriamente()# Escolhe a nova direção aleatoriamente
+            self.mudar_direcao_aleatoriamente()# Escolhe a nova direção aleatoriamente
 
     def passo_eh_caminho(self, passo, lab):   
         # REQ
@@ -112,11 +113,13 @@ class Agente:
         # Se der o passo, continua sendo caminho (lab.eh_caminho())
         return lab.eh_caminho(passo[0], passo[1])    
         
-    def passo_esta_ocupado(self, passo, lab):    
+    def passo_esta_ocupado(self, lab, passo):    
         # REQ
         # Deve verificar:
-        # Se der o passo, a posição estará ocupada? (lab.eh_celula_ocupada())
-        return lab.eh_celula_ocupada(passo[0], passo[1])
+        # Se der o passo, a posição estará ocupada? (lab.eh_celula_ocupada(self, celula, agente_id))
+        lab = self._labirinto
+        lab.eh_celula_ocupada(passo, )
+        return 
   
     def dar_passo(self, prox_pos_agente):
         # REQ
