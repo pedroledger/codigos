@@ -154,13 +154,12 @@ class Labirinto:
         self.agentes[id] = f
         return f
 
-    def eh_celula_ocupada(self, celula: Celula, agente_id: int):
+    def eh_celula_ocupada(self, celula, agente_id):
         """ Verifica se uma celula tem algum agente diferente do agente_id """
         # REQ
         # Deve verificar no dicionário de agentes se a célula do parâmetro está
         # sendo ocupada por algum agente
-        # Celula(self, pai=None, coord_matr=None, coord_turt=None, tam_cel=None, dim=None)
-        #self.agentes[agente_id]._posicao == celula.coord_turt
+        
         for id in self.agentes.keys():
             if id != agente_id and self.agentes[id]._posicao == celula:
                 return True

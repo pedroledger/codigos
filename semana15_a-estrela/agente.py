@@ -7,6 +7,7 @@ from percursos import Waze
 # add as seguintes bibliotecas
 from utils import vector
 from random import choice
+from celula import Celula
 
 class Agente:
 
@@ -98,37 +99,36 @@ class Agente:
         # REQ
         # Deve obter o passo (sem efetivamente dar o passo)
         passo = self.prox_passo()
-        pos_atual = self._posicao
-        prox_pos_agente = None
+        pos_atual = self._posicao.coord_turtle() # lin e col
+        x = passo[0] + pos_atual[0]
+        y = passo[1] + pos_atual[1]
+        prox_pos_agente = lab.criar_celula(coord_turt=(x, y))
+        lin = prox_pos_agente.coord_matriz()[0]
+        col = prox_pos_agente.coord_matriz()[1]
 
-        # Caso a posição não esteja ocupada e seja caminho:
-        if self.passo_eh_caminho(passo, lab) == True and self.passo_esta_ocupado(passo, lab) == False:
-            prox_pos_agente = passo # Muda o agente para a posição do novo passo
-            self.desenhar_se(prox_pos_agente)
-        else: # Caso contrário
-            self.mudar_direcao_aleatoriamente()# Escolhe a nova direção aleatoriamente
-
-    def passo_eh_caminho(self, passo, lab):   
         # REQ
         # Deve verificar:
         # Se der o passo, continua sendo caminho (lab.eh_caminho())
-        return lab.eh_caminho(passo[0], passo[1])    
-        
-    def passo_esta_ocupado(self, passo, lab):    
+        if lab.eh_caminho(lin, col) == True and lab.eh_celula_ocupada(prox_pos_agente, self._id) == False:   
+            self._posicao = prox_pos_agente
+
         # REQ
         # Deve verificar:
         # Se der o passo, a posição estará ocupada? (lab.eh_celula_ocupada(self, celula, agente_id))
-        # Se der o passo, a posição estará ocupada? (lab.eh_celula_ocupada(self, passo, self._id))
         
-        return lab.eh_celula_ocupada(passo, self._id)
-  
-    def dar_passo(self, prox_pos_agente):
+        # Caso a posição não esteja ocupada e seja caminho:
+        # Muda o agente para a posição do novo passo
+             
+             
+        else: # Caso contrário
+            self.mudar_direcao_aleatoriamente()# Escolhe a nova direção aleatoriamente
+    
         # REQ
         # Definir qual é a próxima posição do agente
-        self._posicao = prox_pos_agente
+        #self._posicao = prox_pos_agente # dá o passo
         # Desenhar a posição na tela
         self.desenhar_se()
-        #return
+        return
 
     def prox_passo(self):
         """ Obtém o próximo passo do agente na direção em que se encontra """
