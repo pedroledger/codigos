@@ -106,26 +106,13 @@ class Agente:
         lin = prox_pos_agente.coord_matriz()[0]
         col = prox_pos_agente.coord_matriz()[1]
 
-        # REQ
-        # Deve verificar:
-        # Se der o passo, continua sendo caminho (lab.eh_caminho())
-        if lab.eh_caminho(lin, col) == True and lab.eh_celula_ocupada(prox_pos_agente, self._id) == False:   
-            self._posicao = prox_pos_agente
-
-        # REQ
-        # Deve verificar:
-        # Se der o passo, a posição estará ocupada? (lab.eh_celula_ocupada(self, celula, agente_id))
-        
         # Caso a posição não esteja ocupada e seja caminho:
-        # Muda o agente para a posição do novo passo
-             
-             
+        if lab.eh_caminho(lin, col) == True and lab.eh_celula_ocupada(prox_pos_agente, self._id) == False:   
+            # Muda o agente para a posição do novo passo
+            self._posicao = prox_pos_agente
         else: # Caso contrário
-            self.mudar_direcao_aleatoriamente()# Escolhe a nova direção aleatoriamente
-    
-        # REQ
-        # Definir qual é a próxima posição do agente
-        #self._posicao = prox_pos_agente # dá o passo
+            self.mudar_direcao_aleatoriamente()# Escolhe a nova direção aleatoriamente 
+        
         # Desenhar a posição na tela
         self.desenhar_se()
         return
